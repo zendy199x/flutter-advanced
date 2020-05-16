@@ -17,32 +17,37 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final questions = const [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answer': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answer': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+    },
+    {
+      'questionText': 'Who\'s your favorite instructor?',
+      'answer': ['Zendy', 'Cheng', 'Min', 'Justin'],
+    }
+  ];
+
   var _questionIndex = 0;
 
   void _answerQuestion() {
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
+      setState(() {
+        _questionIndex = _questionIndex + 1;
+      });
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      print("We have more questions");
+    } else {
+      print("No more question");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    const questions = [
-      {
-        'questionText': 'What\'s your favorite color?',
-        'answer': ['Black', 'Red', 'Green', 'White'],
-      },
-      {
-        'questionText': 'What\'s your favorite animal?',
-        'answer': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
-      },
-      {
-        'questionText': 'Who\'s your favorite instructor?',
-        'answer': ['Zendy', 'Cheng', 'Min', 'Justin'],
-      }
-    ];
-
     // var dummy = ["Hello"];
     // dummy.add("Max");
     // print(dummy);
@@ -52,15 +57,19 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
+        body: _questionIndex < questions.length ? 
+        Column(
           children: [
             Question(
               questions[_questionIndex]['questionText'],
             ),
-            ...(questions[_questionIndex]['answer'] as List<String>).map((answer) {
+            ...(questions[_questionIndex]['answer'] as List<String>)
+                .map((answer) {
               return Answer(_answerQuestion, answer);
             }).toList()
           ],
+        ) : Center(
+          child: Text("You did it"),
         ),
       ),
     );
