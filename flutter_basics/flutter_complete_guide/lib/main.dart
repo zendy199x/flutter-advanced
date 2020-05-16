@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    const questions = [
       {
         'questionText': 'What\'s your favorite color?',
         'answer': ['Black', 'Red', 'Green', 'White'],
@@ -42,6 +42,11 @@ class _MyAppState extends State<MyApp> {
         'answer': ['Zendy', 'Cheng', 'Min', 'Justin'],
       }
     ];
+
+    // var dummy = ["Hello"];
+    // dummy.add("Max");
+    // print(dummy);
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
