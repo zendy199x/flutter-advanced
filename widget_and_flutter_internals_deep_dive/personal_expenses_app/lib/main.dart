@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
@@ -10,10 +10,9 @@ import './widgets/chart.dart';
 import './models/transaction.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
+  //   DeviceOrientation.portraitUp,
   // ]);
   runApp(MyApp());
 }
@@ -24,34 +23,35 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        errorColor: Colors.red,
-        fontFamily: "Quicksand",
-        textTheme: ThemeData.light().textTheme.copyWith(
-              title: TextStyle(
-                fontFamily: "OpenSans",
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              button: TextStyle(color: Colors.white),
-            ),
-        appBarTheme: AppBarTheme(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          // errorColor: Colors.red,
+          fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
                 title: TextStyle(
-                  fontFamily: "OpenSans",
-                  fontSize: 20,
+                  fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
+                button: TextStyle(color: Colors.white),
               ),
-        ),
-      ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          )),
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  // String titleInput;
+  // String amountInput;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -71,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now(),
     // ),
   ];
-
   bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
@@ -119,9 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build() MyHomePageState');
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text(
@@ -148,7 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           );
-
     final txListWidget = Container(
       height: (mediaQuery.size.height -
               appBar.preferredSize.height -
@@ -156,8 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
           0.7,
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
-
-    final pageBoby = SafeArea(
+    final pageBody = SafeArea(
       child: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
@@ -168,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Show Chart",
+                    'Show Chart',
                     style: Theme.of(context).textTheme.title,
                   ),
                   Switch.adaptive(
@@ -179,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         _showChart = val;
                       });
                     },
-                  )
+                  ),
                 ],
               ),
             if (!isLandscape)
@@ -205,15 +202,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-
     return Platform.isIOS
         ? CupertinoPageScaffold(
-            child: pageBoby,
+            child: pageBody,
             navigationBar: appBar,
           )
         : Scaffold(
             appBar: appBar,
-            body: pageBoby,
+            body: pageBody,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: Platform.isIOS
