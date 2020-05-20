@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   List<Widget> _buildLandscapeContent(
     MediaQueryData mediaQuery,
-    AppBar appBar,
+    PreferredSizeWidget appBar,
     Widget txListWidget,
   ) {
     return [
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
 
   List<Widget> _buildPortraitContent(
     MediaQueryData mediaQuery,
-    AppBar appBar,
+    PreferredSizeWidget appBar,
     Widget txListWidget,
   ) {
     return [
