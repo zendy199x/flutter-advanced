@@ -4,13 +4,14 @@ import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionItem extends StatelessWidget {
-  final Transaction transaction;
-  final Function deleteTx;
-
   const TransactionItem({
+    Key key,
     @required this.transaction,
     @required this.deleteTx,
-  });
+  }) : super(key: key);
+
+  final Transaction transaction;
+  final Function deleteTx;
 
   @override
   Widget build(BuildContext context) {
