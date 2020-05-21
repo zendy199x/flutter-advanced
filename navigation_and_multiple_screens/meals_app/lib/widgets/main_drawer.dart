@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
 import '../screens/filters_screen.dart';
 
@@ -12,7 +12,7 @@ class MainDrawer extends StatelessWidget {
       title: Text(
         title,
         style: TextStyle(
-          fontFamily: "RobotoCondensed",
+          fontFamily: 'RobotoCondensed',
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
@@ -29,11 +29,11 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 120,
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
             color: Theme.of(context).accentColor,
             child: Text(
-              "Cooking Up!",
+              'Cooking Up!',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 30,
@@ -44,20 +44,12 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile(
-            "Meals",
-            Icons.restaurant,
-            () {
-              Navigator.of(context).pushReplacementNamed("/");
-            }
-          ),
-          buildListTile(
-            "Filter",
-            Icons.settings,
-            () {
-              Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
-            }
-          ),
+          buildListTile('Meals', Icons.restaurant, () {
+            Navigator.of(context).pushReplacementNamed('/');
+          }),
+          buildListTile('Filters', Icons.settings, () {
+            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
+          }),
         ],
       ),
     );
