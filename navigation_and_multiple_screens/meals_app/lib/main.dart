@@ -4,7 +4,6 @@ import './screens/category_meals_screen.dart';
 import './screens/categories_screen.dart';
 import './screens/meal_detail_screen.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -37,7 +36,21 @@ class MyApp extends StatelessWidget {
         "/": (ctx) => CategoriesScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-      }
+      },
+      onGenerateRoute: (settings) {
+        print(settings.arguments);
+        // if (settings.name == "/meal-detail") {
+        //   return ...;
+        // } else if (settings.name == "/something-else") {
+        //   return...;
+        // }
+        // return MaterialPageRoute(builder: (ctx) => CategoriesScreen(),);
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (ctx) => CategoriesScreen(),
+        );
+      },
     );
   }
 }
