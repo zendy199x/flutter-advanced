@@ -10,10 +10,10 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-    // return ChangeNotifierProvider.value(
-      create: (_) => Products(), // using builder if version provider < 4.0
-      // value: Products(),
+    // return ChangeNotifierProvider(
+    return ChangeNotifierProvider.value(
+      // create: (_) => Products(), // using builder if version provider < 4.0
+      value: Products(),
       child: MaterialApp(
           title: "MyShop",
           theme: ThemeData(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.deepOrange,
             fontFamily: "Lato",
           ),
-          home: ProductsOverviewScreenn(),
+          home: ProductsOverviewScreen(),
           routes: {
             ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           }),
