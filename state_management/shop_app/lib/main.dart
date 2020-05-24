@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
     // return ChangeNotifierProvider.value(
-      create: (_) => Products(),
+      create: (_) => Products(), // using builder if version provider < 4.0
       // value: Products(),
       child: MaterialApp(
           title: "MyShop",
