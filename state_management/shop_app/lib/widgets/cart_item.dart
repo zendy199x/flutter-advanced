@@ -1,7 +1,7 @@
-import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import "../providers/cart.dart";
+import '../providers/cart.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
@@ -10,13 +10,13 @@ class CartItem extends StatelessWidget {
   final int quantity;
   final String title;
 
-  CartItem({
+  CartItem(
     this.id,
     this.productId,
     this.price,
     this.quantity,
     this.title,
-  });
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CartItem extends StatelessWidget {
         ),
         alignment: Alignment.centerRight,
         padding: EdgeInsets.only(right: 20),
-        margin: const EdgeInsets.symmetric(
+        margin: EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 4,
         ),
@@ -41,7 +41,7 @@ class CartItem extends StatelessWidget {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
       child: Card(
-        margin: const EdgeInsets.symmetric(
+        margin: EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 4,
         ),
@@ -49,15 +49,16 @@ class CartItem extends StatelessWidget {
           padding: EdgeInsets.all(8),
           child: ListTile(
             leading: CircleAvatar(
-                child: Padding(
-              padding: EdgeInsets.all(10),
-              child: FittedBox(
-                child: Text("\$$price"),
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: FittedBox(
+                  child: Text('\$$price'),
+                ),
               ),
-            )),
+            ),
             title: Text(title),
-            subtitle: Text("Total: \$${price * quantity}"),
-            trailing: Text("$quantity x"),
+            subtitle: Text('Total: \$${(price * quantity)}'),
+            trailing: Text('$quantity x'),
           ),
         ),
       ),

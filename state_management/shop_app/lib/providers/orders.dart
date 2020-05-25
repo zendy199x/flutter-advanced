@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import "./cart.dart";
+import './cart.dart';
 
 class OrderItem {
   final String id;
@@ -23,7 +23,7 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  addOrder(List<CartItem> cartProducts, double total) {
+  void addOrder(List<CartItem> cartProducts, double total) {
     _orders.insert(
       0,
       OrderItem(
