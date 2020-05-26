@@ -74,26 +74,27 @@ class Products with ChangeNotifier {
         .post(
       url,
       body: json.encode({
-        "title": product.title,
-        "description": product.description,
-        "imageUrl": product.imageUrl,
-        "price": product.price,
-        "isFavotire": product.isFavorite,
+        'title': product.title,
+        'description': product.description,
+        'imageUrl': product.imageUrl,
+        'price': product.price,
+        'isFavorite': product.isFavorite,
       }),
     )
         .then((response) {
-          print(json.decode(response.body));
       final newProduct = Product(
         title: product.title,
         description: product.description,
         price: product.price,
         imageUrl: product.imageUrl,
-        id: json.decode(response.body)["name"],
+        id: json.decode(response.body)['name'],
       );
-
       _items.add(newProduct);
       // _items.insert(0, newProduct); // at the start of the list
       notifyListeners();
+    }).catchError((error) {
+      print(error);
+      throw error;
     });
   }
 
