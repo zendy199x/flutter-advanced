@@ -76,10 +76,11 @@ class Cart with ChangeNotifier {
       _items.update(
         productId,
         (existingCartItem) => CartItem(
-            id: existingCartItem.id,
-            title: existingCartItem.title,
-            quantity: existingCartItem.quantity - 1,
-            price: existingCartItem.price - 1),
+          id: existingCartItem.id,
+          title: existingCartItem.title,
+          quantity: existingCartItem.quantity - 1,
+          price: existingCartItem.price,
+        ),
       );
     } else {
       _items.remove(productId);
