@@ -1,7 +1,7 @@
-import "dart:convert";
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import "package:http/http.dart" as http;
+import 'package:http/http.dart' as http;
 
 class Product with ChangeNotifier {
   final String id;
@@ -29,12 +29,12 @@ class Product with ChangeNotifier {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
-    final url = "https://flutter-update-2f80f.firebaseio.com/products/$id.json";
+    final url = 'https://flutter-update-2f80f.firebaseio.com/products/$id.json';
     try {
       final response = await http.patch(
         url,
         body: json.encode({
-          "isFavorite": isFavorite,
+          'isFavorite': isFavorite,
         }),
       );
       if (response.statusCode >= 400) {

@@ -1,7 +1,7 @@
-import "dart:convert";
+import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import "package:http/http.dart" as http;
+import 'package:http/http.dart' as http;
 
 import './cart.dart';
 
@@ -27,9 +27,8 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchAndSetOrders() async {
-    const url = "https://flutter-update-2f80f.firebaseio.com/orders.json";
+    const url = 'https://flutter-update-2f80f.firebaseio.com/orders.json';
     final response = await http.get(url);
-    print(json.decode(response.body));
     final List<OrderItem> loadedOrders = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     if (extractedData == null) {
@@ -39,16 +38,16 @@ class Orders with ChangeNotifier {
       loadedOrders.add(
         OrderItem(
           id: orderId,
-          amount: orderData["amount"],
-          dateTime: DateTime.parse(orderData["dateTime"]),
-          products: (orderData["products"] as List<dynamic>)
+          amount: orderData['amount'],
+          dateTime: DateTime.parse(orderData['dateTime']),
+          products: (orderData['products'] as List<dynamic>)
               .map(
                 (item) => CartItem(
-                  id: item["id"],
-                  price: item["price"],
-                  quantity: item["quantity"],
-                  title: orderData["title"],
-                ),
+                      id: item['id'],
+                      price: item['price'],
+                      quantity: item['quantity'],
+                      title: item['title'],
+                    ),
               )
               .toList(),
         ),
@@ -59,19 +58,19 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-    const url = "https://flutter-update-2f80f.firebaseio.com/orders.json";
+    const url = 'https://flutter-update-2f80f.firebaseio.com/orders.json';
     final timestamp = DateTime.now();
     final response = await http.post(
       url,
       body: json.encode({
-        "amount": total,
-        "dateTime": timestamp.toIso8601String(),
-        "product": cartProducts
+        'amount': total,
+        'dateTime': timestamp.toIso8601String(),
+        'products': cartProducts
             .map((cp) => {
-                  "id": cp.id,
-                  "title": cp.title,
-                  "quantity": cp.quantity,
-                  "price": cp.price,
+                  'id': cp.id,
+                  'title': cp.title,
+                  'quantity': cp.quantity,
+                  'price': cp.price,
                 })
             .toList(),
       }),
@@ -79,9 +78,9 @@ class Orders with ChangeNotifier {
     _orders.insert(
       0,
       OrderItem(
-        id: json.decode(response.body)["name"],
+        id: json.decode(response.body)['name'],
         amount: total,
-        dateTime: DateTime.now(),
+        dateTime: timestamp,
         products: cartProducts,
       ),
     );

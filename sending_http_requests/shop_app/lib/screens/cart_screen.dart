@@ -38,7 +38,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
-                  OrderButton(cart),
+                  OrderButton(cart: cart)
                 ],
               ),
             ),
@@ -48,12 +48,12 @@ class CartScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: cart.items.length,
               itemBuilder: (ctx, i) => CartItem(
-                cart.items.values.toList()[i].id,
-                cart.items.keys.toList()[i],
-                cart.items.values.toList()[i].price,
-                cart.items.values.toList()[i].quantity,
-                cart.items.values.toList()[i].title,
-              ),
+                    cart.items.values.toList()[i].id,
+                    cart.items.keys.toList()[i],
+                    cart.items.values.toList()[i].price,
+                    cart.items.values.toList()[i].quantity,
+                    cart.items.values.toList()[i].title,
+                  ),
             ),
           )
         ],
@@ -63,9 +63,12 @@ class CartScreen extends StatelessWidget {
 }
 
 class OrderButton extends StatefulWidget {
-  final Cart cart;
+  const OrderButton({
+    Key key,
+    @required this.cart,
+  }) : super(key: key);
 
-  OrderButton(this.cart);
+  final Cart cart;
 
   @override
   _OrderButtonState createState() => _OrderButtonState();
